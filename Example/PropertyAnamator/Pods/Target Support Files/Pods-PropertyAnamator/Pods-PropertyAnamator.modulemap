@@ -1,0 +1,6 @@
+framework module Pods_PropertyAnamator {
+  umbrella header "Pods-PropertyAnamator-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,7 @@
+target 'PropertyAnamator' do
+  use_frameworks!
+
+  pod 'constrain'
+  pod 'AnimatingViewContainer', :path => '../../../AnimatingViewContainer'
+
+end

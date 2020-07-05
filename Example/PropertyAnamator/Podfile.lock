@@ -1,0 +1,24 @@
+PODS:
+  - AnimatingViewContainer (0.1.0):
+    - constrain
+  - constrain (1.0.3)
+
+DEPENDENCIES:
+  - AnimatingViewContainer (from `../../../AnimatingViewContainer`)
+  - constrain
+
+SPEC REPOS:
+  trunk:
+    - constrain
+
+EXTERNAL SOURCES:
+  AnimatingViewContainer:
+    :path: "../../../AnimatingViewContainer"
+
+SPEC CHECKSUMS:
+  AnimatingViewContainer: 23fb61aa1fb6c0a4039eae527b4c7c1394c5f41e
+  constrain: fcf02b6400e62b9bd37e00894269c2c6621556ab
+
+PODFILE CHECKSUM: f7f379af80665e6a7a1f1bcb39a2203ce90dcb5c
+
+COCOAPODS: 1.9.3

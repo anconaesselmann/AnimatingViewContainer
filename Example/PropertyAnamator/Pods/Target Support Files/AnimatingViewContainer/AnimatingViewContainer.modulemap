@@ -1,0 +1,6 @@
+framework module AnimatingViewContainer {
+  umbrella header "AnimatingViewContainer-umbrella.h"
+
+  export *
+  module * { export * }
+}
