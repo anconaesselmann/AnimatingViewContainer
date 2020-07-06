@@ -5,7 +5,7 @@
 import UIKit
 import constrain
 
-public class ViewContainer: UIView {
+open class ViewContainer: UIView {
 
     public enum State {
         case begin(HorizontalDirection)
@@ -14,18 +14,18 @@ public class ViewContainer: UIView {
         case failed
     }
 
-    public var dropShadow: DropShadow? = DropShadow()
+    open var dropShadow: DropShadow? = DropShadow()
 
-    public var canTransition: Bool = true
+    open var canTransition: Bool = true
 
     private var currentViewCenter: NSLayoutConstraint?
     private var nextViewCenter: NSLayoutConstraint?
 
     private var animating = false
 
-    public weak var delegate: ViewContainerStateChangeDelegate?
+    open weak var delegate: ViewContainerStateChangeDelegate?
 
-    public var timing: UITimingCurveProvider = UICubicTimingParameters(controlPoint1: CGPoint(x: 0.1, y: 0.8), controlPoint2: CGPoint(x: 1, y: 1))
+    open var timing: UITimingCurveProvider = UICubicTimingParameters(controlPoint1: CGPoint(x: 0.1, y: 0.8), controlPoint2: CGPoint(x: 1, y: 1))
 
     private var navGesture = SwipeNavigationGestureRecognizer()
 
@@ -35,12 +35,12 @@ public class ViewContainer: UIView {
 
     private var nextView: UIView?
 
-    private var getNextView: () -> UIView?
-    private var getPreviousView: () -> UIView?
+    public var getNextView: (() -> UIView?)?
+    public var getPreviousView: (() -> UIView?)?
 
-    public var currentViewTransitionSpeed: CGFloat = 1.0
+    open var currentViewTransitionSpeed: CGFloat = 1.0
 
-    public init(initialView: UIView = UIView(), getNextView: @escaping () -> UIView?, getPreviousView: @escaping () -> UIView?) {
+    public init(initialView: UIView = UIView(), getNextView: (() -> UIView?)? = nil, getPreviousView: (() -> UIView?)? = nil) {
         currentView = initialView
         self.getNextView = getNextView
         self.getPreviousView = getPreviousView
@@ -52,28 +52,40 @@ public class ViewContainer: UIView {
         clipsToBounds = true
     }
 
-    @available(*, unavailable)
-    required init?(coder: NSCoder) { fatalError() }
+    public func set(currentView: UIView) {
+        self.currentView.removeFromSuperview()
+        self.currentView = currentView
+        currentViewCenter = setupView(currentView, offset: 0)
+    }
 
-    public func programmaticNext() {
+    @available(*, unavailable)
+    required public init?(coder: NSCoder) { fatalError() }
+
+    open func programmaticNext() {
         guard canTransition else {
             return
         }
         hasBegunProgrammatic(.left)
-        goNext()
+        guard goNext() else {
+           failedGesture()
+           return
+       }
     }
 
-    public func programmaticBack() {
+    open func programmaticBack() {
         guard canTransition else {
             return
         }
         hasBegunProgrammatic(.right)
-        goBack()
+        guard goBack() else {
+            failedGesture()
+            return
+        }
     }
 
-    fileprivate func goNext() {
-        guard !animating, let nextView = getNextView() else {
-            return
+    fileprivate func goNext() -> Bool {
+        guard !animating, let nextView = getNextView?() else {
+            return false
         }
         animating = true
         self.nextView?.removeFromSuperview()
@@ -81,11 +93,12 @@ public class ViewContainer: UIView {
         prepareForAnimation(nextView, offset: width)
 
         animateNext(currentView: currentView, nextView: nextView, direction: .left)
+        return true
     }
 
-    fileprivate func goBack() {
-        guard !animating, let previousView = getPreviousView() else {
-            return
+    fileprivate func goBack() -> Bool {
+        guard !animating, let previousView = getPreviousView?() else {
+            return false
         }
         animating = true
         self.nextView = previousView
@@ -94,6 +107,7 @@ public class ViewContainer: UIView {
         sendSubviewToBack(previousView)
 
         animateNext(currentView: currentView, nextView: previousView, direction: .right)
+        return true
     }
 
     private func setupView(_ view: UIView, offset: CGFloat) -> NSLayoutConstraint? {
@@ -104,11 +118,11 @@ public class ViewContainer: UIView {
         return constraints.layoutConstraintWithIdentifier(.centerX)
     }
 
-    public func hasBegunGesture(_ direction: HorizontalDirection) {
+    open func hasBegunGesture(_ direction: HorizontalDirection) {
         delegate?.viewContainer(self, hasChangedState: .begin(direction))
     }
 
-    public func hasBegunProgrammatic(_ direction: HorizontalDirection) {
+    open func hasBegunProgrammatic(_ direction: HorizontalDirection) {
         delegate?.viewContainer(self, hasChangedState: .begin(direction))
         delegate?.viewContainer(self, hasChangedState: .end)
     }
@@ -141,8 +155,16 @@ public class ViewContainer: UIView {
         case .unknown:
             failedGesture()
             return
-        case .left: goNext()
-        case .right: goBack()
+        case .left:
+            guard goNext() else {
+                failedGesture()
+                return
+            }
+        case .right:
+            guard goBack() else {
+                failedGesture()
+                return
+            }
         }
         animator.pauseAnimation()
         self.isUserInteractionEnabled = false
@@ -218,11 +240,11 @@ public class ViewContainer: UIView {
     }
 }
 
-public class LinkableViewContainer: ViewContainer {
+open class LinkableViewContainer: ViewContainer {
 
     private var driver = false
 
-    public func drive(_ state: State) {
+    open func drive(_ state: State) {
         guard !driver else {
             return
         }
@@ -235,12 +257,12 @@ public class LinkableViewContainer: ViewContainer {
         }
     }
 
-    public override func hasBegunGesture(_ direction: HorizontalDirection) {
+    open override func hasBegunGesture(_ direction: HorizontalDirection) {
         driver = true
         super.hasBegunGesture(direction)
     }
 
-    public override func hasBegunProgrammatic(_ direction: HorizontalDirection) {
+    open override func hasBegunProgrammatic(_ direction: HorizontalDirection) {
         driver = true
         super.hasBegunProgrammatic(direction)
     }
