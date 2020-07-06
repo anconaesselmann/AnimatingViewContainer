@@ -1,5 +1,5 @@
 PODS:
-  - AnimatingViewContainer (0.1.0):
+  - AnimatingViewContainer (0.1.1):
     - constrain
   - constrain (1.0.3)
 
@@ -16,9 +16,9 @@ EXTERNAL SOURCES:
     :path: "../../../AnimatingViewContainer"
 
 SPEC CHECKSUMS:
-  AnimatingViewContainer: 23fb61aa1fb6c0a4039eae527b4c7c1394c5f41e
+  AnimatingViewContainer: 6a926540157430924d89e589619c2b04559680e6
   constrain: fcf02b6400e62b9bd37e00894269c2c6621556ab
 
-PODFILE CHECKSUM: f7f379af80665e6a7a1f1bcb39a2203ce90dcb5c
+PODFILE CHECKSUM: 7c5862e8b83ddb14eab6cb4ee8446ae4884fd9bd
 
 COCOAPODS: 1.9.3

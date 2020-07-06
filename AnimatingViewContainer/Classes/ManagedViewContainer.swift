@@ -1,7 +1,7 @@
 //  Created by Axel Ancona Esselmann on 7/5/20.
 //
 
-import Foundation
+import UIKit
 
 public protocol ViewContainerDataProvider: class {
     var numberOfElements: Int { get }
@@ -11,6 +11,12 @@ public protocol ViewContainerDelegate: class {
     func viewContainer(_ viewContainer: ViewContainer, viewForIndex index: Int) -> UIView?
 }
 
+extension ViewContainerDelegate {
+     func viewContainer(_ viewContainer: ViewContainer, didPresentElementAtIndex index: Int) -> Void {
+        /* intentionally left blank */
+    }
+}
+
 open class ManagedViewContainer: ViewContainer {
     public weak var dataProvider: ViewContainerDataProvider?
     public weak var displayDelegate: ViewContainerDelegate?
@@ -18,6 +24,23 @@ open class ManagedViewContainer: ViewContainer {
     private var currentIndex: Int?
 
     private var temporaryNextIndex: Int?
+
+    private var _pageControl: UIPageControl?
+
+    public var pageControl: UIPageControl {
+        // Lazily create when accessing property publiclly. Don't create when accessing it internally
+        get {
+            if let pageControl = _pageControl {
+                return pageControl
+            } else {
+                let pageControl = UIPageControl()
+                pageControl.numberOfPages = dataProvider?.numberOfElements ?? 0
+                pageControl.currentPage = currentIndex ?? 0
+                _pageControl = pageControl
+                return pageControl
+            }
+        }
+    }
 
     private func getView(forIndex index: Int) -> UIView? {
         guard let dataProvider = dataProvider else {
@@ -62,9 +85,11 @@ open class ManagedViewContainer: ViewContainer {
 
     @discardableResult
     public func reloadData() -> Self {
-        if currentIndex == nil, (dataProvider?.numberOfElements ?? 0) > 0 {
+        let numberOfElements = dataProvider?.numberOfElements ?? 0
+        if currentIndex == nil, numberOfElements > 0 {
             currentIndex = 0
         }
+        _pageControl?.numberOfPages = numberOfElements
         guard let currentIndex = currentIndex, let currentView = getView(forIndex: currentIndex) else {
             return self
         }
@@ -83,6 +108,8 @@ extension ManagedViewContainer: ViewContainerStateChangeDelegate {
         case .end:
             if let nextIndex = temporaryNextIndex {
                 currentIndex = nextIndex
+                _pageControl?.currentPage = nextIndex
+                displayDelegate?.viewContainer(self, didPresentElementAtIndex: nextIndex)
                 temporaryNextIndex = nil
             }
         case .failed:

@@ -15,7 +15,6 @@
 		978DE96224AFB61D0040530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 978DE96124AFB61D0040530B /* Assets.xcassets */; };
 		978DE96524AFB61D0040530B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978DE96324AFB61D0040530B /* LaunchScreen.storyboard */; };
 		978DE97024AFB61E0040530B /* PropertyAnamatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978DE96F24AFB61E0040530B /* PropertyAnamatorTests.swift */; };
-		CA0299C064C5A6970FD53006 /* Pods_PropertyAnamatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41A8E862C03062E26C390429 /* Pods_PropertyAnamatorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		3EE54BD3C2E14FE885BD2E8C /* Pods-PropertyAnamator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyAnamator.release.xcconfig"; path = "Target Support Files/Pods-PropertyAnamator/Pods-PropertyAnamator.release.xcconfig"; sourceTree = "<group>"; };
-		41A8E862C03062E26C390429 /* Pods_PropertyAnamatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropertyAnamatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5211DDB412CD75B957C34F2F /* Pods_PropertyAnamator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PropertyAnamator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DBB269FA5AE4133F8AF4CC /* Pods-PropertyAnamator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyAnamator.debug.xcconfig"; path = "Target Support Files/Pods-PropertyAnamator/Pods-PropertyAnamator.debug.xcconfig"; sourceTree = "<group>"; };
 		978DE95524AFB61C0040530B /* PropertyAnamator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PropertyAnamator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,8 +42,6 @@
 		978DE96B24AFB61E0040530B /* PropertyAnamatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PropertyAnamatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		978DE96F24AFB61E0040530B /* PropertyAnamatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyAnamatorTests.swift; sourceTree = "<group>"; };
 		978DE97124AFB61E0040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B1856DD398FE437CE7830A34 /* Pods-PropertyAnamatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyAnamatorTests.debug.xcconfig"; path = "Target Support Files/Pods-PropertyAnamatorTests/Pods-PropertyAnamatorTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D5A8BE48D9E2FE7950E5CF88 /* Pods-PropertyAnamatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PropertyAnamatorTests.release.xcconfig"; path = "Target Support Files/Pods-PropertyAnamatorTests/Pods-PropertyAnamatorTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0299C064C5A6970FD53006 /* Pods_PropertyAnamatorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +111,6 @@
 			children = (
 				87DBB269FA5AE4133F8AF4CC /* Pods-PropertyAnamator.debug.xcconfig */,
 				3EE54BD3C2E14FE885BD2E8C /* Pods-PropertyAnamator.release.xcconfig */,
-				B1856DD398FE437CE7830A34 /* Pods-PropertyAnamatorTests.debug.xcconfig */,
-				D5A8BE48D9E2FE7950E5CF88 /* Pods-PropertyAnamatorTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -126,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				5211DDB412CD75B957C34F2F /* Pods_PropertyAnamator.framework */,
-				41A8E862C03062E26C390429 /* Pods_PropertyAnamatorTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,7 +149,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 978DE97724AFB61E0040530B /* Build configuration list for PBXNativeTarget "PropertyAnamatorTests" */;
 			buildPhases = (
-				1B859AB92192B598C3DAD927 /* [CP] Check Pods Manifest.lock */,
 				978DE96724AFB61E0040530B /* Sources */,
 				978DE96824AFB61E0040530B /* Frameworks */,
 				978DE96924AFB61E0040530B /* Resources */,
@@ -231,28 +222,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B859AB92192B598C3DAD927 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PropertyAnamatorTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		725D36A4C34F0CD917A199D3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -497,7 +466,6 @@
 		};
 		978DE97824AFB61E0040530B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1856DD398FE437CE7830A34 /* Pods-PropertyAnamatorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -520,7 +488,6 @@
 		};
 		978DE97924AFB61E0040530B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5A8BE48D9E2FE7950E5CF88 /* Pods-PropertyAnamatorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

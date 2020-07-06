@@ -184,6 +184,7 @@ open class ViewContainer: UIView {
         animator.stopAnimation(true)
         cleanUpAfterCancel()
         self.isUserInteractionEnabled = true
+        currentView.isUserInteractionEnabled = true
     }
 
     private func prepareForAnimation(_ nextView: UIView, offset: CGFloat) {
@@ -235,6 +236,7 @@ open class ViewContainer: UIView {
 
     fileprivate func finalCleanup() {
         isUserInteractionEnabled = true
+        currentView.isUserInteractionEnabled = true
         nextView = nil
         nextViewCenter = nil
     }
